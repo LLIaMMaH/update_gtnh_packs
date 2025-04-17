@@ -1,0 +1,28 @@
+# Environment
+env/
+.env
+venv/
+.venv
+
+# Python Compiled Files
+__pycache__/
+*.pyc
+
+# Log files
+logs/
+*.log
+
+# JetBrains IDE
+.idea/
+
+# SQLite
+db.sqlote3
+
+# Large media files
+*.mp4
+*.tiff
+*.avi
+*.flv
+*.mov
+*.wmv
+
