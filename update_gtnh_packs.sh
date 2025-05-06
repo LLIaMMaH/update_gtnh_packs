@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Конфигурация
-LOG_FILE="/var/log/gtnh_update.log"
+LOG_FILE="/usr/local/bin/gtnh_update.log"
 MIN_SPACE_GB=10  # Минимальный свободный объем в GB
-SERVER_PACKS_DIR="/data/nextcloud/Public/files/Minecraft/GTNH/ServerPacks"
+SERVER_PACKS_DIR="/data/nextcloud/Publisher/files/Minecraft/GTNH/ServerPacks"
 SERVER_PACKS_URL="http://downloads.gtnewhorizons.com/ServerPacks/?aria2"
-MULTI_MC_DIR="/data/nextcloud/Public/files/Minecraft/GTNH/Multi_mc_downloads"
+MULTI_MC_DIR="/data/nextcloud/Publisher/files/Minecraft/GTNH/Multi_mc_downloads"
 MULTI_MC_URL="http://downloads.gtnewhorizons.com/Multi_mc_downloads/?aria2"
 
 # Функция для логирования
@@ -84,6 +84,10 @@ download_files "$SERVER_PACKS_DIR" "$SERVER_PACKS_URL"
 
 check_disk_space "$MULTI_MC_DIR" "$MIN_SPACE_GB" || exit 1
 download_files "$MULTI_MC_DIR" "$MULTI_MC_URL"
+
+log "=== Обновим файлы на облаке ==="
+
+php /var/www/nextcloud/occ files:scan --path /Publisher/files
 
 log "=== Завершение выполнения скрипта ==="
 exit 0
